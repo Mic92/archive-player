@@ -1,0 +1,148 @@
+/* TV-specific styles */
+@media screen and (min-width: 1280px) and (min-height: 720px) {
+  /* Assume TV display when screen is large */
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Hide search input on TV */
+  .playlist-header {
+    display: none;
+  }
+  
+  .url-input,
+  .url-form button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .playlist-item {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .item-details {
+    font-size: 0.75rem;
+  }
+  
+  .playlist-card {
+    padding: 1rem;
+  }
+  
+  .playlist-card h3 {
+    font-size: 1rem;
+  }
+  
+  .playlist-card p {
+    font-size: 0.85rem;
+  }
+  
+  .video-controls button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Focus styles for TV navigation */
+  button:focus,
+  input:focus,
+  .playlist-item:focus,
+  .playlist-card:focus,
+  a:focus,
+  video:focus {
+    outline: 4px solid #4CAF50;
+    outline-offset: 2px;
+    transform: scale(1.05);
+  }
+  
+  video:focus {
+    transform: none; /* Don't scale video */
+    box-shadow: 0 0 20px #4CAF50;
+  }
+  
+  .playlist-item:focus {
+    background: #444;
+  }
+  
+  .playlist-card:focus {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Larger scrollbars for TV */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #666;
+  }
+  
+  /* TV safe area margins */
+  .app {
+    padding: 2%;
+  }
+  
+  .main-content {
+    max-height: 85vh;
+  }
+  
+  /* Video player adjustments for TV */
+  .video-player {
+    height: calc(100vh - 200px); /* Fixed height with room for header and margins */
+    max-height: none;
+  }
+  
+  /* Video.js TV optimizations */
+  .video-js .vjs-control-bar {
+    height: 4em;
+    font-size: 1.2em;
+  }
+  
+  .video-js .vjs-button {
+    width: 4em;
+  }
+  
+  .video-js .vjs-time-control {
+    font-size: 1.3em;
+    line-height: 3em;
+  }
+  
+  .video-js .vjs-progress-control {
+    height: 1em;
+  }
+  
+  .video-js .vjs-progress-holder {
+    height: 1em;
+  }
+  
+  /* Hide mouse cursor after inactivity */
+  body {
+    cursor: none;
+  }
+  
+  body:hover {
+    cursor: auto;
+  }
+}
+
+/* D-pad navigation helpers */
+.focusable {
+  transition: all 0.2s ease;
+}
+
+.focusable:focus {
+  transform: scale(1.05);
+}
+
+/* Grid layout for TV */
+@media screen and (min-width: 1920px) {
+  .playlist-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  
+  .playlist-container {
+    max-width: 600px;
+  }
+}
