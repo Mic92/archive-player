@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useArchive } from './hooks/useArchive';
-import { useTVNavigation } from './hooks/useTVNavigation';
 import { VideoPlayer } from './components/VideoPlayer';
 import { PlaylistView } from './components/PlaylistView';
 import { storage } from './services/storage';
 import type { ArchiveFile, Playlist } from './types/archive';
 import './App.css';
-import './tv.css';
 
 function App() {
   const [identifier, setIdentifier] = useState('');
@@ -18,28 +16,6 @@ function App() {
   
   const { metadata, loading, error } = useArchive(identifier);
   
-  // Custom back handler
-  const handleBack = () => {
-    console.log('Back button pressed', { currentFile, showPlaylist, identifier });
-    
-    if (currentFile && !showPlaylist) {
-      // If watching video, go back to playlist
-      console.log('Going back to playlist');
-      setShowPlaylist(true);
-      setCurrentFile(null);
-      return true;
-    } else if (identifier) {
-      // If in playlist, go back to home
-      console.log('Going back to home');
-      setIdentifier('');
-      setCurrentFile(null);
-      return true;
-    }
-    console.log('Nothing to go back to');
-    return false;
-  };
-  
-  useTVNavigation(handleBack);
 
   useEffect(() => {
     loadRecentPlaylists();
@@ -53,11 +29,6 @@ function App() {
   const loadRecentPlaylists = async () => {
     const playlists = await storage.getAllPlaylists();
     setRecentPlaylists(playlists.slice(0, 5));
-    // Auto-focus first playlist card on TV
-    setTimeout(() => {
-      const firstCard = document.querySelector('.playlist-card');
-      if (firstCard) (firstCard as HTMLElement).focus();
-    }, 100);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -74,11 +45,6 @@ function App() {
     setCurrentFile(file);
     setCurrentIndex(index);
     setShowPlaylist(false);
-    // Focus video after selection
-    setTimeout(() => {
-      const video = document.querySelector('video');
-      if (video) (video as HTMLElement).focus();
-    }, 100);
   };
 
   const playNext = () => {
