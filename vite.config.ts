@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.BUILD_TARGET === 'github' ? '/archive-org-player/' : '/',
+  base: process.env.BUILD_TARGET === 'github' ? '/archive-player/' : '/',
   plugins: [
     react(),
     VitePWA({
